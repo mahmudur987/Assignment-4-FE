@@ -52,14 +52,14 @@ const Header = () => {
           <NavigationMenuList>
             {navLinks.map((x, i) => (
               <NavigationMenuItem key={i}>
-                <NavigationMenuLink>
+                <p>
                   <Link
                     to={x.path}
                     className="flex gap-5 tex-lg hover:border-b-2 hover:border-red-500"
                   >
                     {x.label} {x.icon}{" "}
                   </Link>
-                </NavigationMenuLink>
+                </p>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>

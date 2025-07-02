@@ -7,10 +7,12 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 export interface customError {
-  data: {
-    message: string;
-    success: boolean;
-    error: {};
+  error: {
+    data: {
+      message: string;
+      success: boolean;
+      error: {};
+    };
   };
   status: number;
 }
@@ -19,8 +21,8 @@ export const bookApi = createApi({
   reducerPath: "bookApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://l2-a3-amber.vercel.app/api/",
-  }) as BaseQueryFn<string | FetchArgs, unknown, customError>,
-  tagTypes: ["book"],
+  }) as BaseQueryFn<unknown, customError>,
+  tagTypes: ["book", "borrow"],
   endpoints: (builder) => ({
     getBook: builder.query({
       query: () => ({ url: `/books` }),
@@ -48,8 +50,15 @@ export const bookApi = createApi({
     }),
     deleteBook: builder.mutation({
       query: (id) => ({ url: `/books/${id}`, method: "DELETE" }),
-
       invalidatesTags: ["book"],
+    }),
+    createBorrow: builder.mutation({
+      query: (data) => ({ url: `/borrow`, method: "POST", body: data }),
+      invalidatesTags: ["book", "borrow"],
+    }),
+    getBorrow: builder.query({
+      query: () => ({ url: `/borrow` }),
+      providesTags: ["borrow"],
     }),
   }),
 });
@@ -60,4 +69,6 @@ export const {
   useDeleteBookMutation,
   useGetBookByIdQuery,
   useUpdateBookMutation,
+  useCreateBorrowMutation,
+  useGetBorrowQuery,
 } = bookApi;
