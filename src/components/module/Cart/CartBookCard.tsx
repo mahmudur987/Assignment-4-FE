@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
@@ -17,7 +16,7 @@ type CartBookCardProps = {
   book: Book;
 };
 
-const CartBookCard: FC<CartBookCardProps> = ({ book }) => {
+const CartBookCard: React.FC<CartBookCardProps> = ({ book }) => {
   return (
     <Card className="w-full max-w-md">
       <CardHeader>

@@ -20,7 +20,7 @@ const COLORS = [
 ];
 
 const BorrowedBooksPieChart = () => {
-  const { data, isLoading, isError, error }: any = useGetBorrowQuery({});
+  const { data }: any = useGetBorrowQuery({});
   let borrowBook: borrowedBook[] = data?.data || [];
 
   const chartData = borrowBook?.map((item) => ({

@@ -15,7 +15,7 @@ import { useCreateBookMutation } from "@/Redux/features/ApiSlice";
 
 const genreData = ["FICTION", "NON_FICTION", "SCIENCE", "HISTORY"];
 const AddBookModal = () => {
-  const [createBook, { data, isLoading, isError, error }] =
+  const [createBook, { data, isLoading, isError, error }]: any =
     useCreateBookMutation();
   const [openModal, setOpenModal] = useState(false);
   const [form, setForm] = useState({

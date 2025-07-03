@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 const genreData = ["FICTION", "NON_FICTION", "SCIENCE", "HISTORY"];
 const AddNewBook = () => {
-  const [createBook, { data, isLoading, isError, error }] =
+  const [createBook, { data, isLoading, isError, error }]: any =
     useCreateBookMutation();
 
   const [form, setForm] = useState({

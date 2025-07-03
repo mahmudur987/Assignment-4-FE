@@ -1,9 +1,7 @@
-import type { Book } from "@/pages/Books";
 import {
   createApi,
   fetchBaseQuery,
   type BaseQueryFn,
-  type FetchArgs,
 } from "@reduxjs/toolkit/query/react";
 
 export interface customError {

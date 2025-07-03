@@ -8,7 +8,6 @@ import Signup from "@/pages/Signup";
 import Cart from "@/pages/Cart";
 import AddNewBook from "@/components/module/Books/AddNewBook";
 import UpdateBook from "@/components/module/Books/UpdateBook";
-import { useGetBookByIdQuery } from "@/Redux/features/ApiSlice";
 
 export const router = createBrowserRouter([
   {

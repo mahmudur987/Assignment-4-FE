@@ -7,7 +7,6 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   useGetBookByIdQuery,
   useUpdateBookMutation,
-  type customError,
 } from "@/Redux/features/ApiSlice";
 import toast from "react-hot-toast";
 import { useParams } from "react-router";
@@ -15,7 +14,7 @@ import { useParams } from "react-router";
 const genreData = ["FICTION", "NON_FICTION", "SCIENCE", "HISTORY"];
 const UpdateBook = () => {
   const { id } = useParams();
-  const { data, isLoading, isError, error } = useGetBookByIdQuery(id);
+  const { data, isLoading, isError, error }: any = useGetBookByIdQuery(id);
   const [updateBook] = useUpdateBookMutation();
   const [form, setForm] = useState<{
     title: string;
