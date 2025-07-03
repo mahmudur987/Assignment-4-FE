@@ -10,12 +10,13 @@ import {
 } from "@/Redux/features/ApiSlice";
 import toast from "react-hot-toast";
 import { useParams } from "react-router";
+import LoadingSpinner from "../common/LoadingSpinner";
 
 const genreData = ["FICTION", "NON_FICTION", "SCIENCE", "HISTORY"];
 const UpdateBook = () => {
   const { id } = useParams();
   const { data, isLoading, isError, error }: any = useGetBookByIdQuery(id);
-  const [updateBook] = useUpdateBookMutation();
+  const [updateBook, { isLoading: updateLoading }] = useUpdateBookMutation();
   const [form, setForm] = useState<{
     title: string;
     author: string;
@@ -49,20 +50,18 @@ const UpdateBook = () => {
     if (Number(form.copies) > 0) {
       newData = { ...form, available: true };
     } else {
-      newData = form;
+      newData = { ...form, available: false };
     }
-
-    console.log("Submitting book:", newData);
 
     try {
       const res: any = id && (await updateBook({ id, bookData: newData }));
-
-      console.log(res);
+      if (res.data) {
+        toast.success(res.data.message ?? "Book updated successfully");
+      }
       if (res.error) {
         toast.error(res.error.data.message ?? "Error");
       }
     } catch (error: any) {
-      console.log(error);
       toast.error("Error Happen");
     }
   };
@@ -85,12 +84,12 @@ const UpdateBook = () => {
   }, [data, isLoading, isError, error]);
 
   if (isLoading) {
-    return <p>Loading .....</p>;
+    return <LoadingSpinner />;
   }
 
   return (
-    <section>
-      <div className="max-w-lg space-y-9">
+    <section className="flex justify-center items-center width-[100vw]">
+      <div className="max-w-lg w-full space-y-9 border border-gray-200 p-9 bg-[var(--chart-2)] rounded-2xl">
         <h2 className="text-3xl font-bold">UpdateBook</h2>
 
         <form onSubmit={handleSubmit} className="space-y-9">
@@ -171,7 +170,7 @@ const UpdateBook = () => {
           </div>
 
           <Button type="submit" className="w-full">
-            {isLoading ? "Loading..." : "Submit"}
+            {updateLoading ? "Loading..." : "Submit"}
           </Button>
         </form>
       </div>

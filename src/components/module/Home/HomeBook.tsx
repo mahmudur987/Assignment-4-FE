@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 import { useGetBookQuery } from "@/Redux/features/ApiSlice";
 import { Link } from "react-router";
-import LoadingSpinner from "../common/LoadingSpiner";
+import LoadingSpinner from "../common/LoadingSpinner";
 import ErrorMessage from "../common/Error";
 
 export type Book = {

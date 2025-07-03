@@ -19,7 +19,6 @@ export function ConfirmModal({
 }) {
   const handleYes = () => {
     handleConfirm();
-    setConfirmModal(true);
   };
   const handleNo = () => {
     setConfirmModal(true);

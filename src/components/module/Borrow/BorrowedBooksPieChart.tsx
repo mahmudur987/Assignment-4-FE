@@ -8,6 +8,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import LoadingSpinner from "../common/LoadingSpinner";
+import ErrorMessage from "../common/Error";
 
 const COLORS = [
   "#8884d8",
@@ -20,13 +22,15 @@ const COLORS = [
 ];
 
 const BorrowedBooksPieChart = () => {
-  const { data }: any = useGetBorrowQuery({});
+  const { data, isLoading, isError }: any = useGetBorrowQuery({});
   let borrowBook: borrowedBook[] = data?.data || [];
 
   const chartData = borrowBook?.map((item) => ({
     name: item.book.title,
     value: item.totalQuantity,
   }));
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <div className="w-full h-96">

@@ -12,8 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useCreateBorrowMutation } from "@/Redux/features/ApiSlice";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const BorrowBookModal = ({ book }: { book: any }) => {
+  const navigate = useNavigate();
+
   const [createBorrow, { data, isLoading, isError, error }]: any =
     useCreateBorrowMutation();
 
@@ -36,7 +39,6 @@ const BorrowBookModal = ({ book }: { book: any }) => {
     e.preventDefault();
     const borrowData = { ...form, book: book._id };
     createBorrow(borrowData);
-    setOpenModal(false);
   };
 
   useEffect(() => {
@@ -47,11 +49,14 @@ const BorrowBookModal = ({ book }: { book: any }) => {
 
     if (data?.success) {
       toast.success(data.message ?? "Book Borrowed Successfully");
+      navigate("/borrow");
+      setOpenModal(false);
     }
 
     if (isError) {
       let errorMessage = error ? error?.data?.error.message : "Error";
       toast.error(errorMessage, { duration: 3000 });
+      setOpenModal(true);
     }
   }, [data, isLoading, isError, error]);
 

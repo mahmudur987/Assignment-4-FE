@@ -1,6 +1,6 @@
 import SingleBook from "@/components/module/Books/SingleBook";
 import ErrorMessage from "@/components/module/common/Error";
-import LoadingSpinner from "@/components/module/common/LoadingSpiner";
+import LoadingSpinner from "@/components/module/common/LoadingSpinner";
 import { Button } from "@/components/ui/button";
 
 import { useGetBookQuery } from "@/Redux/features/ApiSlice";

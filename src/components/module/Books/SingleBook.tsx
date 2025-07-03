@@ -13,7 +13,6 @@ import BorrowBookModal from "../Modal/BorrowBookModal";
 const SingleBook: FC<{ book: Book }> = ({ book }: { book: Book }) => {
   const [deleteBook] = useDeleteBookMutation();
   const [confirmModal, setConfirmModal] = useState(false);
-
   const handleConfirm = () => {
     setConfirmModal(true);
   };
@@ -21,6 +20,7 @@ const SingleBook: FC<{ book: Book }> = ({ book }: { book: Book }) => {
     try {
       const res: any = await deleteBook(book._id);
       if (res?.data) {
+        setConfirmModal(true);
         toast.success(res.data.message ?? "Book deleted successfully");
       }
       if (res?.error) {
