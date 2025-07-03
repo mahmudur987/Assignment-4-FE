@@ -1,4 +1,6 @@
 import SingleBook from "@/components/module/Books/SingleBook";
+import ErrorMessage from "@/components/module/common/Error";
+import LoadingSpinner from "@/components/module/common/LoadingSpiner";
 import { Button } from "@/components/ui/button";
 
 import { useGetBookQuery } from "@/Redux/features/ApiSlice";
@@ -21,8 +23,8 @@ const Books = () => {
   const { data, isError, isLoading } = useGetBookQuery(undefined);
 
   const books: Book[] = data?.data || [];
-  if (isLoading) return <p>Loading ........</p>;
-  if (isError) return <p>Error........</p>;
+  if (isLoading) return <LoadingSpinner />;
+  if (isError) return <ErrorMessage />;
 
   return (
     <section>

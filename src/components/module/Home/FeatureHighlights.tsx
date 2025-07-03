@@ -12,8 +12,11 @@ const FeatureHighlights = () => {
           desc: "Use it on any device seamlessly.",
         },
       ].map((item, i) => (
-        <div key={i} className="p-6 border rounded-xl shadow-sm bg-white">
-          <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+        <div
+          key={i}
+          className="p-6 border rounded-xl shadow-sm bg-[var(--card)]"
+        >
+          <h3 className="text-xl font-bold mb-2">{item.title}</h3>
           <p className="text-gray-600">{item.desc}</p>
         </div>
       ))}
