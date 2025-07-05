@@ -1,4 +1,5 @@
-import SingleBook from "@/components/module/Books/SingleBook";
+import BooksTable from "@/components/module/Books/BookTable";
+
 import ErrorMessage from "@/components/module/common/Error";
 import LoadingSpinner from "@/components/module/common/LoadingSpinner";
 import { Button } from "@/components/ui/button";
@@ -25,7 +26,7 @@ const Books = () => {
   const books: Book[] = data?.data || [];
   if (isLoading) return <LoadingSpinner />;
   if (isError) return <ErrorMessage />;
-
+  console.log(books);
   return (
     <section>
       <div className="text-end">
@@ -34,8 +35,8 @@ const Books = () => {
         </Link>
       </div>
       <h1 className="text-2xl font-bold text-center"> All Books</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-        {books && books?.map((book: Book) => <SingleBook book={book} />)}
+      <div>
+        <BooksTable books={books} />
       </div>
     </section>
   );
