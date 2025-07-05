@@ -10,9 +10,7 @@ import { ConfirmModal } from "../Modal/ConfirmModal";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
